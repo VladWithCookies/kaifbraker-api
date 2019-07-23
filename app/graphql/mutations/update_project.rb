@@ -20,7 +20,6 @@ module Mutations
         description: description,
         deadline: deadline,
         public: public,
-        user: user
       )
 
       project

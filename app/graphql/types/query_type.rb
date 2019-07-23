@@ -1,14 +1,9 @@
 module Types
   class QueryType < Types::BaseObject
-    field :user, UserType, null: true
     field :projects, [ProjectType], null: true
 
     field :project, ProjectType, null: true do
       argument :id, ID, required: true
-    end
-
-    def user
-      current_user
     end
 
     def projects
@@ -16,7 +11,13 @@ module Types
     end
 
     def project(id:)
-      projects.find(id)
+      projects&.find(id)
+    end
+
+    private
+
+    def current_user
+      context[:current_user]
     end
   end
 end

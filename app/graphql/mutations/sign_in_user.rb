@@ -9,11 +9,13 @@ module Mutations
     def resolve(email: nil, password: nil)
       user = User.find_by_email(email)
 
-      return unless user&.authenticate(password)
+      if user&.authenticate(password)
+        token = JsonWebToken.encode(user_id: user.id)
 
-      token = JsonWebToken.encode(user_id: user.id)
-
-      { user: user, token: token }
+        { user: user, token: token }
+      else
+        GraphQL::ExecutionError.new('Неправильный емейл. Ну или пароль...')
+      end
     end
   end
 end

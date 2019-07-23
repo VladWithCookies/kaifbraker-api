@@ -6,10 +6,11 @@ class ApplicationController < ActionController::API
 
     return if token.blank?
 
-    result = JsonWebToken.decode(token)
-
-    return unless result
-
-    User.find_by(id: result[:user_id])
+    begin
+      result = JsonWebToken.decode(token)
+      User.find_by(id: result[:user_id])
+    rescue JWT::ExpiredSignature
+      self.status = 401
+    end
   end
 end
