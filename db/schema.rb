@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_14_081545) do
     t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id", unique: true
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|

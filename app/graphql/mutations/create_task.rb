@@ -1,9 +1,9 @@
 module Mutations
   class CreateTask < GraphQL::Schema::Mutation
     argument :content, String, required: true
-    argument :project_id, String, required: true
+    argument :project_id, ID, required: true
 
-    type Types::ProjectType
+    type Types::TaskType
 
     def resolve(content: nil, project_id: nil)
       user = context[:current_user]

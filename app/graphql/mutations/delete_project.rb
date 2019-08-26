@@ -9,7 +9,9 @@ module Mutations
 
       return unless user
 
-      user.projects.destroy(id)
+      project = user.projects.find(id)
+      project.destroy
+      project
     end
   end
 end
