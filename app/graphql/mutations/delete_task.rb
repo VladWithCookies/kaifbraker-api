@@ -9,8 +9,11 @@ module Mutations
 
       return unless user
 
-      project = user.projects.find(project_id)
-      project.tasks.destroy(id)
+      task = Task.find(id)
+
+      return unless task.project.user_id == user.id
+
+      task.destroy
     end
   end
 end
