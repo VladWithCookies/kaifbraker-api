@@ -16,7 +16,7 @@ module Mutations
       )
 
       if user.save
-        { user: user }
+        user
       else
         GraphQL::ExecutionError.new(user.errors.full_messages.join(', '))
       end
