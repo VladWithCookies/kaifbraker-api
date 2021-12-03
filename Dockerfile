@@ -1,4 +1,4 @@
-FROM ruby:2.6.1-slim
+FROM --platform=linux/amd64 ruby:2.6.3-slim
 
 USER root
 
